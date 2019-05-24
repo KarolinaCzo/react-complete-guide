@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
+// https://github.com/FormidableLabs/radium
+import Radium from 'radium';
 
 class App extends Component {
   state = {
@@ -12,12 +14,6 @@ class App extends Component {
     otherState: 'some other value',
     showPersons: false
   };
-
-  // const [otherState, setOtherState] = useState({
-  //   otherState: 'some other value'
-  // });
-
-  // console.log(personsState);
 
   nameChangedHandler = (event, index) => {
     // Get the person
@@ -54,7 +50,11 @@ class App extends Component {
       color: 'white',
       border: '1px solid blue',
       padding: '8px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'black'
+      }
     };
 
     let persons = null;
@@ -78,6 +78,10 @@ class App extends Component {
       );
 
       style.backgroundColor = 'red';
+      style[':hover'] = {
+        backgroundColor: 'salmon',
+        color: 'black'
+      };
     }
 
     let classes = [];
@@ -99,41 +103,6 @@ class App extends Component {
       </div>
     );
   }
-
-  // return React.createElement(
-  //   'div',
-  //   { className: 'App' },
-  //   React.createElement('h1', null, "Hi, I'm a React App!!!")
-  // );
 }
 
-export default App;
-
-// <Person
-//   name={this.state.persons[0].name}
-//   age={this.state.persons[0].age}
-// />
-//   <Person
-//     name={this.state.persons[1].name}
-//     age={this.state.persons[1].age}
-//     click={this.switchNameHandler.bind(this, 'NewClickName')}
-//     changed={this.nameChangedHandler}
-//   >
-//     My hobbies: Racing
-//           </Person>
-//   <Person
-//     name={this.state.persons[2].name}
-//     age={this.state.persons[2].age}
-//   />
-
-// switchNameHandler = newName => {
-// console.log('Was clicked!');
-// DON'T CHANGE STATE LIKE THIS: personsState.persons[0].name = 'DifferentName';
-//   this.setState({
-//     persons: [
-//       { name: newName, age: 1 },
-//       { name: 'Name2', age: 2 },
-//       { name: 'Name3', age: 4 }
-//     ]
-//   });
-// };
+export default Radium(App);
